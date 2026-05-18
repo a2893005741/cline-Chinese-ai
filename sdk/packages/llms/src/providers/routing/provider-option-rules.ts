@@ -1,9 +1,3 @@
-import { buildGatewayReasoningOptions } from "./anthropic-compatible";
-import { buildOpenAINativeProviderOptions } from "./generic-compatible";
-import {
-	buildGlmThinkingProviderOptionsPatch,
-	isNativeZaiProvider,
-} from "./glm-thinking";
 import {
 	isDeepSeekFamily,
 	isGlmModel,
@@ -11,6 +5,12 @@ import {
 	isMoonshotKimiModelIdFallback,
 	modelReasoningDefaultsOn,
 } from "../model-facts";
+import { buildGatewayReasoningOptions } from "./anthropic-compatible";
+import { buildOpenAINativeProviderOptions } from "./generic-compatible";
+import {
+	buildGlmThinkingProviderOptionsPatch,
+	isNativeZaiProvider,
+} from "./glm-thinking";
 import type {
 	MatchedProviderOptionRule,
 	ProviderOptionBuildInput,

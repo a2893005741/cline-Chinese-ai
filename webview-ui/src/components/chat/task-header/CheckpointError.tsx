@@ -29,8 +29,8 @@ export const CheckpointError: React.FC<CheckpointErrorProps> = ({
 				<AlertDescription className="flex gap-2 justify-end">
 					{messages.showDisableButton && (
 						<Button aria-label="禁用检查点" onClick={handleCheckpointSettingsClick} variant="ghost">
-											禁用检查点
-										</Button>
+							禁用检查点
+						</Button>
 					)}
 					{messages.showGitInstructions && (
 						<a

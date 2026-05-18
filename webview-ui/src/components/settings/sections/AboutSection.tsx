@@ -13,9 +13,10 @@ const AboutSection = ({ version, renderSectionHeader }: AboutSectionProps) => {
 				<div className="flex px-4 flex-col gap-2">
 					<h2 className="text-lg font-semibold">Cline v{version}</h2>
 					<p>
-						一款可以使用您的 CLI 和编辑器的 AI 助手。Cline 能够借助工具逐步处理复杂的软件开发任务，包括创建和编辑文件、探索大型项目、使用浏览器以及执行终端命令（需您授权）。
+						一款可以使用您的 CLI 和编辑器的 AI 助手。Cline
+						能够借助工具逐步处理复杂的软件开发任务，包括创建和编辑文件、探索大型项目、使用浏览器以及执行终端命令（需您授权）。
 					</p>
-	
+
 					<h3 className="text-md font-semibold">社区与支持</h3>
 					<p>
 						<VSCodeLink href="https://x.com/cline">X</VSCodeLink>

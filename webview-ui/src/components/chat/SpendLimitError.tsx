@@ -11,7 +11,7 @@ function formatResetsAt(resetsAt?: string): string | null {
 	if (!resetsAt) return null
 	try {
 		const date = new Date(resetsAt)
-		if (isNaN(date.getTime())) return null
+		if (Number.isNaN(date.getTime())) return null
 		return date.toLocaleDateString(undefined, {
 			month: "short",
 			day: "numeric",
@@ -122,21 +122,21 @@ const SpendLimitError: React.FC<SpendLimitErrorProps> = ({ message, budgetPeriod
 				disabled={buttonState !== "idle"}
 				onClick={handleRequestIncrease}>
 				{buttonState === "sending" ? (
-						<>
-							<span className="codicon codicon-loading codicon-modifier-spin mr-1.5" />
-							发送中…
-						</>
-					) : buttonState === "sent" ? (
-						<>
-							<span className="codicon codicon-check mr-1.5" />
-							请求已发送
-						</>
-					) : (
-						<>
-							<span className="codicon codicon-arrow-up mr-1.5" />
-							申请提额
-						</>
-					)}
+					<>
+						<span className="codicon codicon-loading codicon-modifier-spin mr-1.5" />
+						发送中…
+					</>
+				) : buttonState === "sent" ? (
+					<>
+						<span className="codicon codicon-check mr-1.5" />
+						请求已发送
+					</>
+				) : (
+					<>
+						<span className="codicon codicon-arrow-up mr-1.5" />
+						申请提额
+					</>
+				)}
 			</VSCodeButton>
 		</div>
 	)

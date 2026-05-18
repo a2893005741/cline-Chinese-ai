@@ -62,7 +62,10 @@ const McpMarketplaceView = () => {
 	useEffect(() => {
 		// Fetch marketplace catalog on initial load
 		fetchMarketplace()
-	}, [])
+	}, [
+		// Fetch marketplace catalog on initial load
+		fetchMarketplace,
+	])
 
 	useEffect(() => {
 		// Update loading state when catalog arrives
@@ -73,7 +76,7 @@ const McpMarketplaceView = () => {
 		}
 	}, [mcpMarketplaceCatalog])
 
-	const fetchMarketplace = (forceRefresh: boolean = false) => {
+	const fetchMarketplace = (forceRefresh = false) => {
 		if (forceRefresh) {
 			setIsRefreshing(true)
 		} else {
@@ -280,9 +283,7 @@ const McpMarketplaceView = () => {
 							padding: "20px",
 							color: "var(--vscode-descriptionForeground)",
 						}}>
-						{searchQuery || selectedCategory
-							? "未找到匹配的 MCP 服务器"
-							: "市场中未找到 MCP 服务器"}
+						{searchQuery || selectedCategory ? "未找到匹配的 MCP 服务器" : "市场中未找到 MCP 服务器"}
 					</div>
 				) : (
 					filteredItems.map((item) => (

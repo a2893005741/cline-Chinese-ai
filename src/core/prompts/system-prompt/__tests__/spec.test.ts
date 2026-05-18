@@ -41,7 +41,7 @@ describe("toolSpecFunctionDeclarations (Gemini)", () => {
 	it("includes parameter descriptions from instruction field", () => {
 		const result = toolSpecFunctionDeclarations(makeTool(), mockContext)
 
-		const pathParam = result.parameters?.properties?.["path"] as any
+		const pathParam = result.parameters?.properties?.path as any
 		expect(pathParam).to.exist
 		expect(pathParam.description).to.be.a("string")
 		expect(pathParam.description).to.include("path of the file to read")
@@ -51,8 +51,8 @@ describe("toolSpecFunctionDeclarations (Gemini)", () => {
 		const result = toolSpecFunctionDeclarations(makeTool(), mockContext)
 
 		const props = result.parameters?.properties as any
-		expect(props["path"].description).to.be.a("string").and.not.be.empty
-		expect(props["optional_param"].description).to.be.a("string").and.not.be.empty
+		expect(props.path.description).to.be.a("string").and.not.be.empty
+		expect(props.optional_param.description).to.be.a("string").and.not.be.empty
 	})
 
 	it("handles function-type instructions", () => {
@@ -67,7 +67,7 @@ describe("toolSpecFunctionDeclarations (Gemini)", () => {
 		})
 		const result = toolSpecFunctionDeclarations(tool, mockContext)
 
-		const param = result.parameters?.properties?.["dynamic"] as any
+		const param = result.parameters?.properties?.dynamic as any
 		expect(param.description).to.equal("Dynamic value: /test/project")
 	})
 
@@ -77,7 +77,7 @@ describe("toolSpecFunctionDeclarations (Gemini)", () => {
 		})
 		const result = toolSpecFunctionDeclarations(tool, mockContext)
 
-		const param = result.parameters?.properties?.["empty"] as any
+		const param = result.parameters?.properties?.empty as any
 		expect(param.description).to.be.undefined
 	})
 })
@@ -88,8 +88,8 @@ describe("Gemini and Anthropic parameter descriptions match", () => {
 		const gemini = toolSpecFunctionDeclarations(tool, mockContext)
 		const anthropic = toolSpecInputSchema(tool, mockContext)
 
-		const geminiDesc = (gemini.parameters?.properties?.["path"] as any)?.description
-		const anthropicDesc = (anthropic.input_schema as any).properties["path"]?.description
+		const geminiDesc = (gemini.parameters?.properties?.path as any)?.description
+		const anthropicDesc = (anthropic.input_schema as any).properties.path?.description
 
 		expect(geminiDesc).to.equal(anthropicDesc)
 	})
@@ -117,7 +117,7 @@ describe("native tool placeholder replacement", () => {
 
 		const openAIDesc = ((openAI as any).function.parameters.properties.path as any).description as string
 		const anthropicDesc = ((anthropic as any).input_schema.properties.path as any).description as string
-		const geminiDesc = (gemini.parameters?.properties?.["path"] as any)?.description as string
+		const geminiDesc = (gemini.parameters?.properties?.path as any)?.description as string
 
 		for (const desc of [openAIDesc, anthropicDesc, geminiDesc]) {
 			expect(desc).to.include("/test/project")

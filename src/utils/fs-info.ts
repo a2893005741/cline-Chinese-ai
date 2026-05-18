@@ -174,7 +174,7 @@ async function detectMacOS(resolvedPath: string): Promise<FsInfo> {
 			continue
 		}
 		const [, mountpoint, fsType] = m
-		const prefix = mountpoint.endsWith("/") ? mountpoint : mountpoint + "/"
+		const prefix = mountpoint.endsWith("/") ? mountpoint : `${mountpoint}/`
 		if (resolvedPath === mountpoint || resolvedPath.startsWith(prefix)) {
 			if (mountpoint.length > bestMountpoint.length) {
 				bestMountpoint = mountpoint

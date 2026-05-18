@@ -120,16 +120,14 @@ const experimentalFeatures: FeatureToggle[] = [
 	{
 		id: "yolo",
 		label: "Yolo 模式",
-		description:
-			"无需用户确认即执行任务。自动从计划模式切换到执行模式，并禁用提问工具。请极度谨慎使用。",
+		description: "无需用户确认即执行任务。自动从计划模式切换到执行模式，并禁用提问工具。请极度谨慎使用。",
 		stateKey: "yoloModeToggled",
 		settingKey: "yoloModeToggled",
 	},
 	{
 		id: "double-check-completion",
 		label: "完成前双重检查",
-		description:
-			"拒绝第一次完成尝试，要求模型在接受前根据原始任务要求重新验证其工作。",
+		description: "拒绝第一次完成尝试，要求模型在接受前根据原始任务要求重新验证其工作。",
 		stateKey: "doubleCheckCompletionEnabled",
 		settingKey: "doubleCheckCompletionEnabled",
 	},
@@ -382,7 +380,7 @@ const FeatureSettingsSection = ({ renderSectionHeader }: FeatureSettingsSectionP
 							{/* MCP Display Mode */}
 							<div className="space-y-2">
 								<Label className="text-sm font-medium text-foreground">MCP 显示模式</Label>
-									<p className="text-xs text-muted-foreground">控制 MCP 响应的显示方式</p>
+								<p className="text-xs text-muted-foreground">控制 MCP 响应的显示方式</p>
 								<Select onValueChange={(v) => updateSetting("mcpDisplayMode", v)} value={mcpDisplayMode}>
 									<SelectTrigger className="w-full">
 										<SelectValue />

@@ -14,15 +14,13 @@ export const AccountWelcomeView = () => {
 		<div className="flex flex-col items-center gap-2.5">
 			<ClineLogoVariable className="size-16 mb-4" environment={environment} />
 
-			<p>
-				注册账户以获取最新模型、查看使用情况和积分的账单仪表板，以及更多即将推出的功能。
-			</p>
+			<p>注册账户以获取最新模型、查看使用情况和积分的账单仪表板，以及更多即将推出的功能。</p>
 
 			<VSCodeButton className="w-full mb-4" disabled={isLoginLoading} onClick={handleSignIn}>
 				使用 Cline 注册
 				{isLoginLoading && (
 					<span className="ml-1 animate-spin">
-						<span className="codicon codicon-refresh"></span>
+						<span className="codicon codicon-refresh" />
 					</span>
 				)}
 			</VSCodeButton>

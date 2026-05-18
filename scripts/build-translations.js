@@ -12,8 +12,7 @@ function readSrc(relPath) {
 const data = {
 	package: {
 		displayName: "Cline",
-		description:
-			"自主编码助手，可在您的 IDE 中创建/编辑文件、运行命令、使用浏览器等，每一步都需要您的许可。",
+		description: "自主编码助手，可在您的 IDE 中创建/编辑文件、运行命令、使用浏览器等，每一步都需要您的许可。",
 		commands: [
 			{ id: "cline.plusButtonClicked", title: "新任务" },
 			{ id: "cline.mcpButtonClicked", title: "MCP 服务器" },
@@ -59,26 +58,22 @@ const data = {
 			{
 				id: "ClineWalkthrough",
 				title: "认识 Cline，您的新编码伙伴",
-				description:
-					"Cline 像开发者一样编码，因为它像开发者一样思考。以下是 5 种使用方式：",
+				description: "Cline 像开发者一样编码，因为它像开发者一样思考。以下是 5 种使用方式：",
 				steps: [
 					{
 						id: "welcome",
 						title: "从目标开始，而不仅仅是提示",
-						description:
-							"告诉 Cline 您想要实现什么。它会规划、询问，然后编码，像真正的伙伴一样。",
+						description: "告诉 Cline 您想要实现什么。它会规划、询问，然后编码，像真正的伙伴一样。",
 					},
 					{
 						id: "learn",
 						title: "让 Cline 学习您的代码库",
-						description:
-							"将 Cline 指向您的项目。它会建立理解，做出智能的、上下文感知的更改。",
+						description: "将 Cline 指向您的项目。它会建立理解，做出智能的、上下文感知的更改。",
 					},
 					{
 						id: "advanced-features",
 						title: "始终使用最佳 AI 模型",
-						description:
-							"Cline 为您提供最先进的 AI，连接顶级模型（Anthropic、Gemini、OpenAI 等）。",
+						description: "Cline 为您提供最先进的 AI，连接顶级模型（Anthropic、Gemini、OpenAI 等）。",
 					},
 					{
 						id: "mcp",
@@ -88,8 +83,7 @@ const data = {
 					{
 						id: "getting-started",
 						title: "您始终掌控一切",
-						description:
-							"审查 Cline 的计划和差异。在更改发生之前批准。没有意外。",
+						description: "审查 Cline 的计划和差异。在更改发生之前批准。没有意外。",
 					},
 				],
 			},

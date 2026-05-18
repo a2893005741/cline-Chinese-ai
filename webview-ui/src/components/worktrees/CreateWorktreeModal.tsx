@@ -101,9 +101,7 @@ const CreateWorktreeModal = ({ open, onClose, openAfterCreate = false, onSuccess
 	const title = openAfterCreate ? "新建工作树" : "创建新工作树"
 	const buttonText = openAfterCreate ? "创建并打开" : "创建工作树"
 	const creatingText = openAfterCreate ? "创建并打开中..." : "创建中..."
-	const description = openAfterCreate
-		? "这将在新分支上创建项目副本并在单独的窗口中打开。"
-		: "这将在新分支上创建项目副本。"
+	const description = openAfterCreate ? "这将在新分支上创建项目副本并在单独的窗口中打开。" : "这将在新分支上创建项目副本。"
 
 	return (
 		<div

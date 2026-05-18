@@ -55,7 +55,8 @@ const GeneralSettingsSection = ({ renderSectionHeader }: GeneralSettingsSectionP
 							href="https://cline.bot/privacy"
 							style={{ fontSize: "inherit", textDecoration: "underline" }}>
 							隐私政策
-						</VSCodeLink>。
+						</VSCodeLink>
+						。
 					</p>
 				</div>
 			</Section>

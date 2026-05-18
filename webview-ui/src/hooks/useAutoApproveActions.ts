@@ -50,7 +50,7 @@ export function useAutoApproveActions() {
 				actions: newActions,
 			})
 		},
-		[autoApprovalSettings],
+		[autoApprovalSettings, updateNotifications],
 	)
 
 	// Update notifications setting

@@ -33,7 +33,7 @@ export const TerminalSettingsSection: React.FC<TerminalSettingsSectionProps> = (
 
 		setInputValue(value)
 
-		const seconds = parseFloat(value)
+		const seconds = Number.parseFloat(value)
 		if (Number.isNaN(seconds) || seconds <= 0) {
 			setInputError("Please enter a positive number")
 			return
@@ -178,7 +178,8 @@ export const TerminalSettingsSection: React.FC<TerminalSettingsSectionProps> = (
 								rel="noopener noreferrer"
 								target="_blank">
 								完整故障排除指南
-							</a>。
+							</a>
+							。
 						</p>
 					</div>
 				</div>

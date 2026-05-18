@@ -157,9 +157,7 @@ async function fetchApiKeysForOrganization(organizationId: string): Promise<APIK
 	}
 }
 
-async function discoverRemoteConfigOrg(): Promise<
-	{ organizationId: string; discoveredValue?: string } | undefined
-> {
+async function discoverRemoteConfigOrg(): Promise<{ organizationId: string; discoveredValue?: string } | undefined> {
 	const accountService = ClineAccountService.getInstance()
 
 	const discovery = await accountService.fetchUserRemoteConfig()
@@ -194,10 +192,7 @@ function parseDiscoveredConfig(value: string, organizationId: string): RemoteCon
 	}
 }
 
-async function resolveRemoteConfig(
-	organizationId: string,
-	discoveredValue?: string,
-): Promise<RemoteConfig | undefined> {
+async function resolveRemoteConfig(organizationId: string, discoveredValue?: string): Promise<RemoteConfig | undefined> {
 	if (discoveredValue) {
 		const config = parseDiscoveredConfig(discoveredValue, organizationId)
 		if (config) {
@@ -246,7 +241,7 @@ async function ensureUserInOrgWithRemoteConfig(controller: Controller): Promise<
 		const apiKeys = await fetchApiKeysForOrganization(organizationId)
 		if (remoteConfig.providerSettings?.LiteLLM) {
 			if (apiKeys.litellm) {
-				configuredApiKeys["litellm"] = true
+				configuredApiKeys.litellm = true
 				controller.stateManager.setSecret("remoteLiteLlmApiKey", apiKeys.litellm)
 			} else {
 				controller.stateManager.setSecret("remoteLiteLlmApiKey", undefined)

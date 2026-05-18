@@ -55,14 +55,12 @@ const CreditLimitError: React.FC<CreditLimitErrorProps> = ({
 				<div className="text-error mb-2">{message}</div>
 				<div className="mb-3">
 					{currentBalance ? (
-							<div className="text-foreground">
-								当前余额：<span className="font-bold">{currentBalance.toFixed(2)}</span>
-							</div>
-						) : null}
-						{totalSpent ? <div className="text-foreground">累计消费：{totalSpent.toFixed(2)}</div> : null}
-						{totalPromotions ? (
-							<div className="text-foreground">促销金额：{totalPromotions.toFixed(2)}</div>
-						) : null}
+						<div className="text-foreground">
+							当前余额：<span className="font-bold">{currentBalance.toFixed(2)}</span>
+						</div>
+					) : null}
+					{totalSpent ? <div className="text-foreground">累计消费：{totalSpent.toFixed(2)}</div> : null}
+					{totalPromotions ? <div className="text-foreground">促销金额：{totalPromotions.toFixed(2)}</div> : null}
 				</div>
 			</div>
 

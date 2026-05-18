@@ -99,7 +99,7 @@ export class ClaudeCodeHandler implements ApiHandler {
 					const content = firstContent && "text" in firstContent ? firstContent : undefined
 
 					// Check if content exists before accessing its properties
-					if (content && content.text.startsWith(`API Error`)) {
+					if (content?.text.startsWith(`API Error`)) {
 						// Error messages are formatted as: `API Error: <<status code>> <<json>>`
 						const errorMessageStart = content.text.indexOf("{")
 						const errorMessage = content.text.slice(errorMessageStart)

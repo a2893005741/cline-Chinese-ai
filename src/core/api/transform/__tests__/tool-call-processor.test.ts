@@ -37,8 +37,8 @@ describe("ToolCallProcessor", () => {
 		// Intentionally reversed from the setup chunk: output follows incoming
 		// argument-delta order, but reconstruction is correct regardless of arrival
 		// order because id/name/arguments are matched by tool call index.
-		const firstToolCall = secondResult[0]!.tool_call as any
-		const secondToolCall = secondResult[1]!.tool_call as any
+		const firstToolCall = secondResult[0]?.tool_call as any
+		const secondToolCall = secondResult[1]?.tool_call as any
 		firstToolCall.function.id.should.equal("call_b")
 		firstToolCall.function.name.should.equal("search_files")
 		firstToolCall.function.arguments.should.equal('{"path":"src"}')

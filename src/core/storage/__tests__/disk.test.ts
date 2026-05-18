@@ -34,7 +34,7 @@ describe("disk - hooks functionality", () => {
 		setRuntimeHooksDir(undefined)
 		try {
 			await fs.rm(tempDir, { recursive: true, force: true })
-		} catch (error) {
+		} catch (_error) {
 			// Ignore cleanup errors
 		}
 	})
@@ -480,8 +480,8 @@ describe("disk - atomic writes", () => {
 			result[0].tokensIn.should.equal(500)
 			result[0].tokensOut.should.equal(1000)
 			result[0].totalCost.should.equal(0.15)
-			result[0].cacheWrites!.should.equal(100)
-			result[0].cacheReads!.should.equal(200)
+			result[0].cacheWrites?.should.equal(100)
+			result[0].cacheReads?.should.equal(200)
 		})
 	})
 
@@ -605,7 +605,7 @@ describe("disk - atomic writes", () => {
 			readResult[0].id.should.equal("concurrent-read-1")
 
 			// Now allow rename to complete
-			renameResolve!()
+			renameResolve?.()
 			await writeOperation
 
 			// Subsequent read should get new data

@@ -430,10 +430,10 @@ Then do this.`)
 			const content = await getSkillContent("my-skill", availableSkills)
 
 			expect(content).to.not.be.null
-			expect(content!.name).to.equal("my-skill")
-			expect(content!.instructions).to.include("These are the detailed instructions")
-			expect(content!.instructions).to.include("Step 1")
-			expect(content!.instructions).to.include("Step 2")
+			expect(content?.name).to.equal("my-skill")
+			expect(content?.instructions).to.include("These are the detailed instructions")
+			expect(content?.instructions).to.include("Step 1")
+			expect(content?.instructions).to.include("Step 2")
 		})
 
 		it("should return null for non-existent skill", async () => {
@@ -464,7 +464,7 @@ description: Test
 			const availableSkills = getAvailableSkills(allSkills)
 			const content = await getSkillContent("my-skill", availableSkills)
 
-			expect(content!.instructions).to.equal("Instructions with whitespace")
+			expect(content?.instructions).to.equal("Instructions with whitespace")
 		})
 	})
 
@@ -543,9 +543,9 @@ description: Test
 
 				const remoteSkill = skills.find((s) => s.name === "Deploy Pipeline")
 				expect(remoteSkill).to.not.be.undefined
-				expect(remoteSkill!.path).to.equal("remote:Deploy Pipeline")
-				expect(remoteSkill!.source).to.equal("global")
-				expect(remoteSkill!.description).to.equal("Handles CI/CD deployment")
+				expect(remoteSkill?.path).to.equal("remote:Deploy Pipeline")
+				expect(remoteSkill?.source).to.equal("global")
+				expect(remoteSkill?.description).to.equal("Handles CI/CD deployment")
 			})
 
 			it("should use frontmatter.name as identity even when entry.name drifts", async () => {
@@ -555,8 +555,8 @@ description: Test
 				const skills = await discoverSkills(TEST_CWD, entries)
 				const remoteSkill = skills.find((s) => s.path?.startsWith("remote:"))
 				expect(remoteSkill).to.not.be.undefined
-				expect(remoteSkill!.name).to.equal("Actual Name")
-				expect(remoteSkill!.path).to.equal("remote:Actual Name")
+				expect(remoteSkill?.name).to.equal("Actual Name")
+				expect(remoteSkill?.path).to.equal("remote:Actual Name")
 			})
 
 			it("should skip remote skills with missing frontmatter name", async () => {
@@ -630,15 +630,15 @@ description: Test
 				const content = await getSkillContent("Deploy Pipeline", [skill], entries)
 
 				expect(content).to.not.be.null
-				expect(content!.name).to.equal("Deploy Pipeline")
-				expect(content!.instructions).to.equal("These are the deployment instructions.")
+				expect(content?.name).to.equal("Deploy Pipeline")
+				expect(content?.instructions).to.equal("These are the deployment instructions.")
 			})
 
 			it("should trim whitespace from remote skill instructions", async () => {
 				const entries = [makeEntry("Trim Skill", "Test", "\n   Instructions with whitespace   \n\n")]
 				const skill = { name: "Trim Skill", description: "Test", path: "remote:Trim Skill", source: "global" as const }
 				const content = await getSkillContent("Trim Skill", [skill], entries)
-				expect(content!.instructions).to.equal("Instructions with whitespace")
+				expect(content?.instructions).to.equal("Instructions with whitespace")
 			})
 
 			it("should return null if remote skill entry not found in entries", async () => {

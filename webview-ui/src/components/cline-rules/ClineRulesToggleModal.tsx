@@ -114,6 +114,7 @@ const ClineRulesToggleModal: React.FC = () => {
 		setLocalCursorRulesToggles,
 		setLocalWindsurfRulesToggles,
 		setLocalWorkflowToggles,
+		setLocalAgentsRulesToggles,
 	])
 
 	// Refresh hooks when hooks tab becomes visible
@@ -431,7 +432,7 @@ const ClineRulesToggleModal: React.FC = () => {
 			setArrowPosition(rightPosition)
 			setMenuPosition(buttonRect.top + 1)
 		}
-	}, [isVisible, viewportWidth, viewportHeight])
+	}, [isVisible])
 
 	return (
 		<div className="inline-flex min-w-0 max-w-full items-center" ref={modalRef}>
@@ -491,9 +492,7 @@ const ClineRulesToggleModal: React.FC = () => {
 							<div className="flex items-center gap-2 px-3 py-3 mb-4 bg-vscode-textBlockQuote-background border-l-[3px] border-vscode-textLink-foreground">
 								<i className="codicon codicon-lock text-sm" />
 								<span className="text-base">
-									{currentView === "rules"
-										? "您的组织管理了一些规则"
-										: "您的组织管理了一些工作流"}
+									{currentView === "rules" ? "您的组织管理了一些规则" : "您的组织管理了一些工作流"}
 								</span>
 							</div>
 						) : null}
@@ -512,7 +511,8 @@ const ClineRulesToggleModal: React.FC = () => {
 								</p>
 							) : currentView === "workflows" ? (
 								<p>
-									工作流允许您定义一系列步骤来指导 Cline 完成重复性任务，例如部署服务或提交 PR。要调用工作流，请在聊天中输入{" "}
+									工作流允许您定义一系列步骤来指导 Cline 完成重复性任务，例如部署服务或提交
+									PR。要调用工作流，请在聊天中输入{" "}
 									<span className="text-foreground font-bold">/工作流名称</span>。{" "}
 									<VSCodeLink
 										className="text-xs inline"
@@ -522,12 +522,11 @@ const ClineRulesToggleModal: React.FC = () => {
 								</p>
 							) : currentView === "skills" ? (
 								<p>
-									技能是 Cline 可以按需激活的可重用指令集。当任务与技能描述匹配时，Cline 使用 <span className="font-bold">use_skill</span> 工具加载完整指令。
+									技能是 Cline 可以按需激活的可重用指令集。当任务与技能描述匹配时，Cline 使用{" "}
+									<span className="font-bold">use_skill</span> 工具加载完整指令。
 								</p>
 							) : (
-								<p>
-									钩子允许您在 Cline 执行生命周期的特定点执行自定义脚本，实现自动化并与外部工具集成。
-								</p>
+								<p>钩子允许您在 Cline 执行生命周期的特定点执行自定义脚本，实现自动化并与外部工具集成。</p>
 							)}
 						</div>
 					</div>
@@ -682,12 +681,12 @@ const ClineRulesToggleModal: React.FC = () => {
 										{isWindows
 											? "在 Windows 上，只要钩子文件存在就会执行。"
 											: "切换以启用/禁用（chmod +x/-x）。"}{" "}
-									<VSCodeLink
-										className="text-xs"
-										href="https://docs.cline.bot/features/hooks"
-										style={{ display: "inline", fontSize: "inherit" }}>
-										文档
-									</VSCodeLink>
+										<VSCodeLink
+											className="text-xs"
+											href="https://docs.cline.bot/features/hooks"
+											style={{ display: "inline", fontSize: "inherit" }}>
+											文档
+										</VSCodeLink>
 									</p>
 								</div>
 								{/* Hooks Tab */}
@@ -696,7 +695,9 @@ const ClineRulesToggleModal: React.FC = () => {
 									<div className="flex items-center gap-2 px-3 py-3 mb-4 bg-vscode-inputValidation-warningBackground border-l-[3px] border-vscode-inputValidation-warningBorder">
 										<i className="codicon codicon-warning text-sm" />
 										<span className="text-base">
-											在此基础 PR 中，Windows 尚不支持钩子切换。可以创建、编辑和删除钩子，只要钩子文件存在就会执行。即将推出：跨平台的基于 JSON 的钩子启用/禁用状态。
+											在此基础 PR 中，Windows
+											尚不支持钩子切换。可以创建、编辑和删除钩子，只要钩子文件存在就会执行。即将推出：跨平台的基于
+											JSON 的钩子启用/禁用状态。
 										</span>
 									</div>
 								)}

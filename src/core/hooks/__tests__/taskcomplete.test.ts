@@ -10,7 +10,7 @@ import { createHookTestEnv, HookTestEnv, stubHookDirs, withFixtureRunner, writeH
 describe("TaskComplete Hook", () => {
 	let tempDir: string
 	let sandbox: sinon.SinonSandbox
-	let getEnv: () => { tempDir: string }
+	let _getEnv: () => { tempDir: string }
 	let hookTestEnv: HookTestEnv
 	const getErrorMessage = (error: unknown): string => (error instanceof Error ? error.message : String(error))
 
@@ -23,7 +23,7 @@ describe("TaskComplete Hook", () => {
 		tempDir = hookTestEnv.tempDir
 		sandbox = hookTestEnv.sandbox
 
-		getEnv = () => ({ tempDir })
+		_getEnv = () => ({ tempDir })
 	})
 
 	afterEach(async () => {

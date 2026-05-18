@@ -147,7 +147,7 @@ export class ApplyPatchHandler implements IFullyManagedTool {
 		}
 
 		const finalPath = movePath || targetPath
-		const targetResolution = await this.pathResolver!.resolveAndValidate(finalPath, "ApplyPatchHandler.previewPatch")
+		const targetResolution = await this.pathResolver?.resolveAndValidate(finalPath, "ApplyPatchHandler.previewPatch")
 		if (!targetResolution) {
 			return
 		}
@@ -177,7 +177,7 @@ export class ApplyPatchHandler implements IFullyManagedTool {
 				break
 			}
 			case PatchActionType.UPDATE: {
-				const sourceResolution = await this.pathResolver!.resolveAndValidate(
+				const sourceResolution = await this.pathResolver?.resolveAndValidate(
 					targetPath,
 					"ApplyPatchHandler.previewPatch.source",
 				)
@@ -316,7 +316,7 @@ export class ApplyPatchHandler implements IFullyManagedTool {
 					if (change.type === PatchActionType.UPDATE && change.movePath) {
 						applyResults[change.movePath] = fileResult
 						// Delete the old file after saving the new one
-						await this.providerOps!.deleteFile(originalPath)
+						await this.providerOps?.deleteFile(originalPath)
 						applyResults[originalPath] = { deleted: true }
 					} else {
 						applyResults[originalPath] = fileResult
@@ -540,7 +540,7 @@ export class ApplyPatchHandler implements IFullyManagedTool {
 		const changes: Record<string, FileChange> = {}
 
 		for (const [path, action] of Object.entries(patch.actions)) {
-			const targetResolution = await this.pathResolver!.resolveAndValidate(path, "ApplyPatchHandler.previewPatch")
+			const targetResolution = await this.pathResolver?.resolveAndValidate(path, "ApplyPatchHandler.previewPatch")
 			if (!targetResolution) {
 				continue
 			}

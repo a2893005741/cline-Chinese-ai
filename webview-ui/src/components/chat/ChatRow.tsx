@@ -121,7 +121,7 @@ const ChatRow = memo(
 				}
 				prevHeightRef.current = height
 			}
-		}, [height, isLast, onHeightChange, message])
+		}, [height, isLast, onHeightChange])
 
 		// we cannot return null as virtuoso does not support it so we use a separate visibleMessages array to filter out messages that should not be rendered
 		return chatrow
@@ -200,7 +200,7 @@ export const ChatRowContent = memo(
 			prevIsLastRef.current = isLast
 		}, [isLast, message.ask, message.say])
 
-		const [cost, apiReqCancelReason, apiReqStreamingFailedMessage] = useMemo(() => {
+		const [cost, _apiReqCancelReason, apiReqStreamingFailedMessage] = useMemo(() => {
 			if (message.text != null && message.say === "api_req_started") {
 				const info: ClineApiReqInfo = JSON.parse(message.text)
 				return [info.cost, info.cancelReason, info.streamingFailedMessage, info.retryStatus]
@@ -360,16 +360,7 @@ export const ChatRowContent = memo(
 				default:
 					return [null, null]
 			}
-		}, [
-			type,
-			cost,
-			apiRequestFailedMessage,
-			isCommandExecuting,
-			isCommandPending,
-			apiReqCancelReason,
-			isMcpServerResponding,
-			message.text,
-		])
+		}, [type, isMcpServerResponding, message.text, mcpMarketplaceCatalog])
 
 		const tool = useMemo(() => {
 			if (message.ask === "tool" || message.say === "tool") {
@@ -432,9 +423,7 @@ export const ChatRowContent = memo(
 				case "editedExistingFile":
 					const content = tool?.content || ""
 					const isApplyingPatch = content?.startsWith("%%bash") && !content.endsWith("*** End Patch\nEOF")
-					const editToolTitle = isApplyingPatch
-						? "Cline 正在创建补丁以编辑此文件："
-						: "Cline 想要编辑此文件："
+					const editToolTitle = isApplyingPatch ? "Cline 正在创建补丁以编辑此文件：" : "Cline 想要编辑此文件："
 					return (
 						<div>
 							<div className={HEADER_CLASSNAMES}>
@@ -526,7 +515,7 @@ export const ChatRowContent = memo(
 									{tool.path?.startsWith(".") && <span>.</span>}
 									{tool.path && !tool.path.startsWith(".") && <span>/</span>}
 									<span className="ph-no-capture whitespace-nowrap overflow-hidden text-ellipsis mr-2 text-left [direction: rtl]">
-										{cleanPathPrefix(tool.path ?? "") + "\u200E"}
+										{`${cleanPathPrefix(tool.path ?? "")}\u200E`}
 										{tool.readLineStart != null && tool.readLineEnd != null ? (
 											<span className="opacity-80">
 												{" "}
@@ -643,8 +632,7 @@ export const ChatRowContent = memo(
 											e.stopPropagation()
 											handleToggle()
 										}
-									}}
-									tabIndex={0}>
+									}}>
 									{isExpanded ? (
 										<div>
 											<div className="flex items-center mb-2">
@@ -657,7 +645,7 @@ export const ChatRowContent = memo(
 									) : (
 										<div className="flex items-center">
 											<span className="ph-no-capture whitespace-nowrap overflow-hidden text-ellipsis text-left flex-1 mr-2 [direction:rtl]">
-												{tool.content + "\u200E"}
+												{`${tool.content}\u200E`}
 											</span>
 											<ChevronRightIcon className="my-0.5 shrink-0 size-4" />
 										</div>
@@ -674,9 +662,7 @@ export const ChatRowContent = memo(
 								{tool.operationIsLocatedInWorkspace === false &&
 									toolIcon("sign-out", "yellow", -90, "This URL is external")}
 								<span className="font-bold">
-									{message.type === "ask"
-										? "Cline 想要从此 URL 获取内容："
-										: "Cline 已从此 URL 获取内容："}
+									{message.type === "ask" ? "Cline 想要从此 URL 获取内容：" : "Cline 已从此 URL 获取内容："}
 								</span>
 							</div>
 							<div
@@ -690,7 +676,7 @@ export const ChatRowContent = memo(
 									}
 								}}>
 								<span className="ph-no-capture whitespace-nowrap overflow-hidden text-ellipsis mr-2 [direction:rtl] text-left text-link underline">
-									{tool.path + "\u200E"}
+									{`${tool.path}\u200E`}
 								</span>
 							</div>
 						</div>
@@ -703,14 +689,12 @@ export const ChatRowContent = memo(
 								{tool.operationIsLocatedInWorkspace === false &&
 									toolIcon("sign-out", "yellow", -90, "This search is external")}
 								<span className="font-bold">
-									{message.type === "ask"
-										? "Cline 想要在网络上搜索："
-										: "Cline 已在网络上搜索："}
+									{message.type === "ask" ? "Cline 想要在网络上搜索：" : "Cline 已在网络上搜索："}
 								</span>
 							</div>
 							<div className="bg-code border border-editor-group-border overflow-hidden rounded-xs select-text py-[9px] px-2.5">
 								<span className="ph-no-capture whitespace-nowrap overflow-hidden text-ellipsis mr-2 text-left [direction:rtl]">
-									{tool.path + "\u200E"}
+									{`${tool.path}\u200E`}
 								</span>
 							</div>
 						</div>
@@ -897,7 +881,7 @@ export const ChatRowContent = memo(
 						const isReasoningStreaming = message.partial === true
 						const hasReasoningText = !!message.text?.trim()
 						// Show feature tips throughout the entire thinking/reasoning phase
-						const showFeatureTip = isReasoningStreaming
+						const _showFeatureTip = isReasoningStreaming
 						return (
 							<div>
 								<ThinkingRow
@@ -948,7 +932,7 @@ export const ChatRowContent = memo(
 						return (
 							<div className="text-foreground flex items-center opacity-70 text-[12px] py-1 px-0">
 								<i className="codicon codicon-book mr-1.5" />
-									正在加载 MCP 文档
+								正在加载 MCP 文档
 							</div>
 						)
 					case "generate_explanation": {
@@ -1046,8 +1030,8 @@ export const ChatRowContent = memo(
 								</div>
 								<div className="text-foreground opacity-80">
 									Cline 可能无法查看命令输出。请更新 VSCode（
-									<code>CMD/CTRL + Shift + P</code> → "更新"），并确保使用受支持的 Shell：
-									zsh、bash、fish 或 PowerShell（<code>CMD/CTRL + Shift + P</code> → "终端：选择默认配置文件"）。
+									<code>CMD/CTRL + Shift + P</code> → "更新"），并确保使用受支持的 Shell： zsh、bash、fish 或
+									PowerShell（<code>CMD/CTRL + Shift + P</code> → "终端：选择默认配置文件"）。
 									<a
 										className="px-1"
 										href="https://github.com/cline/cline/wiki/Troubleshooting-%E2%80%90-Shell-Integration-Unavailable">
@@ -1085,8 +1069,8 @@ export const ChatRowContent = memo(
 												</span>
 											) : (
 												<span>
-													第 <strong>{attempt}</strong> 次，共 <strong>{maxAttempts}</strong> 次 -
-													将在 {delaySeconds} 秒后重试...
+													第 <strong>{attempt}</strong> 次，共 <strong>{maxAttempts}</strong> 次 - 将在{" "}
+													{delaySeconds} 秒后重试...
 												</span>
 											)}
 										</div>
@@ -1136,9 +1120,7 @@ export const ChatRowContent = memo(
 										}
 									}}>
 									<SettingsIcon className="size-2" />
-									{isBackgroundModeEnabled
-										? "后台终端已启用"
-										: "启用后台终端（推荐）"}
+									{isBackgroundModeEnabled ? "后台终端已启用" : "启用后台终端（推荐）"}
 								</button>
 							</div>
 						)

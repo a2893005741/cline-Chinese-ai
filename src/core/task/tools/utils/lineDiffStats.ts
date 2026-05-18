@@ -36,8 +36,8 @@ function countLines(value: string): number {
  */
 export function computeLineDiffStats(before: string, after: string): LineDiffStats {
 	// Normalize trailing newlines so diffLines doesn't treat last-line boundary shifts as changes
-	const normBefore = before ? (before.endsWith("\n") ? before : before + "\n") : ""
-	const normAfter = after ? (after.endsWith("\n") ? after : after + "\n") : ""
+	const normBefore = before ? (before.endsWith("\n") ? before : `${before}\n`) : ""
+	const normAfter = after ? (after.endsWith("\n") ? after : `${after}\n`) : ""
 	const changes = diff.diffLines(normBefore, normAfter)
 
 	let linesAdded = 0

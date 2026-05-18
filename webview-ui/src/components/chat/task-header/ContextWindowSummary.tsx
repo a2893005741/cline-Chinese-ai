@@ -129,12 +129,8 @@ export const ContextWindowSummary: React.FC<TaskContextWindowButtonsProps> = ({
 					title="自动压缩阈值"
 					value={<span className="text-muted-foreground">{`${(autoCompactThreshold * 100).toFixed(0)}%`}</span>}>
 					<div className="space-y-1">
-						<p className="text-xs leading-relaxed text-white">
-							点击上下文窗口进度条可设置新阈值。
-						</p>
-						<p className="text-xs leading-relaxed mt-0 mb-0">
-							当上下文窗口使用量超过此阈值时，任务将自动压缩。
-						</p>
+						<p className="text-xs leading-relaxed text-white">点击上下文窗口进度条可设置新阈值。</p>
+						<p className="text-xs leading-relaxed mt-0 mb-0">当上下文窗口使用量超过此阈值时，任务将自动压缩。</p>
 					</div>
 				</AccordionItem>
 			)}

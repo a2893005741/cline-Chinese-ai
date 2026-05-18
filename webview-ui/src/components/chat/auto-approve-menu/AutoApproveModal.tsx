@@ -26,7 +26,7 @@ const AutoApproveModal: React.FC<AutoApproveModalProps> = ({ isVisible, setIsVis
 
 	useClickAway(modalRef, (e) => {
 		// Skip if click was on the button that toggles the modal
-		if (buttonRef.current && buttonRef.current.contains(e.target as Node)) {
+		if (buttonRef.current?.contains(e.target as Node)) {
 			return
 		}
 		setIsVisible(false)
@@ -132,9 +132,7 @@ const AutoApproveModal: React.FC<AutoApproveModalProps> = ({ isVisible, setIsVis
 						<span className="text-sm">启用通知</span>
 					</VSCodeCheckbox>
 				</div>
-				<div className="mt-1 text-xs text-muted-foreground">
-					出于安全和隐私考虑，通知可能仅显示工具的简要信息。
-				</div>
+				<div className="mt-1 text-xs text-muted-foreground">出于安全和隐私考虑，通知可能仅显示工具的简要信息。</div>
 			</div>
 		</div>
 	)

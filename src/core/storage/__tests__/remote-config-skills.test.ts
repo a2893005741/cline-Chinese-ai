@@ -41,20 +41,20 @@ describe("transformRemoteConfigToStateShape - globalSkills", () => {
 			{ name: "Free", alwaysEnabled: false, contents: makeSKILLMd("Free", "Desc") },
 		]
 		const result = transformRemoteConfigToStateShape(makeConfig(entries))
-		expect(result.remoteGlobalSkills![0].alwaysEnabled).to.equal(true)
-		expect(result.remoteGlobalSkills![1].alwaysEnabled).to.equal(false)
+		expect(result.remoteGlobalSkills?.[0].alwaysEnabled).to.equal(true)
+		expect(result.remoteGlobalSkills?.[1].alwaysEnabled).to.equal(false)
 	})
 })
 
 describe("synchronizeRemoteRuleToggles - remote skill toggle sync", () => {
 	it("adds new toggle entries defaulting to true", () => {
 		const result = synchronizeRemoteRuleToggles([{ name: "Deploy", alwaysEnabled: false, contents: "" }], {})
-		expect(result["Deploy"]).to.equal(true)
+		expect(result.Deploy).to.equal(true)
 	})
 
 	it("preserves existing toggle values", () => {
 		const result = synchronizeRemoteRuleToggles([{ name: "Deploy", alwaysEnabled: false, contents: "" }], { Deploy: false })
-		expect(result["Deploy"]).to.equal(false)
+		expect(result.Deploy).to.equal(false)
 	})
 
 	it("removes stale toggle entries", () => {
@@ -62,8 +62,8 @@ describe("synchronizeRemoteRuleToggles - remote skill toggle sync", () => {
 			Old: true,
 			New: false,
 		})
-		expect(result["Old"]).to.be.undefined
-		expect(result["New"]).to.equal(false)
+		expect(result.Old).to.be.undefined
+		expect(result.New).to.equal(false)
 	})
 
 	it("returns empty object when no skills", () => {
@@ -77,9 +77,9 @@ describe("synchronizeRemoteRuleToggles - remote skill toggle sync", () => {
 			{ name: "B", alwaysEnabled: false, contents: "" },
 		]
 		const result = synchronizeRemoteRuleToggles(entries, { A: false, D: true })
-		expect(result["A"]).to.equal(false)
-		expect(result["B"]).to.equal(true)
-		expect(result["D"]).to.be.undefined
+		expect(result.A).to.equal(false)
+		expect(result.B).to.equal(true)
+		expect(result.D).to.be.undefined
 	})
 })
 
@@ -147,19 +147,19 @@ describe("alwaysEnabled enforcement in toggle sync", () => {
 	it("overrides stale false toggle when admin sets alwaysEnabled", () => {
 		const entries = [{ name: "Deploy", alwaysEnabled: true, contents: makeSKILLMd("Deploy", "Desc") }]
 		const result = syncWithAlwaysEnabled(entries, { Deploy: false })
-		expect(result["Deploy"]).to.equal(true)
+		expect(result.Deploy).to.equal(true)
 	})
 
 	it("does not override false toggle when alwaysEnabled is false", () => {
 		const entries = [{ name: "Deploy", alwaysEnabled: false, contents: makeSKILLMd("Deploy", "Desc") }]
 		const result = syncWithAlwaysEnabled(entries, { Deploy: false })
-		expect(result["Deploy"]).to.equal(false)
+		expect(result.Deploy).to.equal(false)
 	})
 
 	it("keeps true toggle unchanged when alwaysEnabled is true", () => {
 		const entries = [{ name: "Deploy", alwaysEnabled: true, contents: makeSKILLMd("Deploy", "Desc") }]
 		const result = syncWithAlwaysEnabled(entries, { Deploy: true })
-		expect(result["Deploy"]).to.equal(true)
+		expect(result.Deploy).to.equal(true)
 	})
 
 	it("new alwaysEnabled skill defaults to true", () => {

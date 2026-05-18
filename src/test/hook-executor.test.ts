@@ -22,7 +22,7 @@ describe("Hook Executor", () => {
 	let tempDir: string
 	let baseTempDir: string // Store base directory for cleanup
 	let testHandler: MessageStateHandler
-	let mockMessages: ClineMessage[]
+	let _mockMessages: ClineMessage[]
 	let stateManagerStub: sinon.SinonStub
 
 	/**
@@ -75,7 +75,7 @@ setTimeout(() => {
 		tempDir = path.join(baseTempDir, ".clinerules", "hooks")
 		await fs.mkdir(tempDir, { recursive: true })
 		testHandler = createTestHandler()
-		mockMessages = []
+		_mockMessages = []
 
 		// Mock StateManager to return baseTempDir as workspace root
 		// This allows HookFactory to find hooks in baseTempDir/.clinerules/hooks/
@@ -93,7 +93,7 @@ setTimeout(() => {
 		// Clean up temporary directory (including entire base directory)
 		try {
 			await fs.rm(baseTempDir, { recursive: true, force: true })
-		} catch (error) {
+		} catch (_error) {
 			// Ignore cleanup errors
 		}
 
@@ -183,8 +183,8 @@ setTimeout(() => {
 			})
 
 			// Verify result
-			result.cancel!.should.equal(false)
-			result.contextModification!.should.equal("Test context modification")
+			result.cancel?.should.equal(false)
+			result.contextModification?.should.equal("Test context modification")
 			result.wasCancelled.should.equal(false)
 
 			// Verify messages were sent
@@ -218,9 +218,9 @@ setTimeout(() => {
 				hooksEnabled: true,
 			})
 
-			result.cancel!.should.equal(true)
-			result.contextModification!.should.equal("Cancelling task")
-			result.errorMessage!.should.equal("Task cancelled by hook")
+			result.cancel?.should.equal(true)
+			result.contextModification?.should.equal("Cancelling task")
+			result.errorMessage?.should.equal("Task cancelled by hook")
 			result.wasCancelled.should.equal(false) // Not user-cancelled, hook requested cancel
 		})
 	})
@@ -275,7 +275,7 @@ setTimeout(() => {
 				hooksEnabled: true,
 			})
 
-			result.cancel!.should.equal(true)
+			result.cancel?.should.equal(true)
 			result.wasCancelled.should.equal(true)
 			setHookCalled.should.equal(true)
 			// clearHookCalled should be true after abort
@@ -290,7 +290,7 @@ setTimeout(() => {
 			})
 
 			// For non-cancellable hooks, setActiveHookExecution should not be called
-			let setHookCalled = false
+			let _setHookCalled = false
 
 			const result = await executeHook({
 				hookName: "TaskCancel",
@@ -306,7 +306,7 @@ setTimeout(() => {
 				isCancellable: false, // Not cancellable
 				say: async () => Date.now(),
 				setActiveHookExecution: async () => {
-					setHookCalled = true
+					_setHookCalled = true
 				},
 				messageStateHandler: testHandler,
 				taskId: "test-task",
@@ -616,7 +616,7 @@ setTimeout(() => {
 				hooksEnabled: true,
 			})
 
-			result.contextModification!.should.equal("Notification received")
+			result.contextModification?.should.equal("Notification received")
 			result.wasCancelled.should.equal(false)
 		})
 	})

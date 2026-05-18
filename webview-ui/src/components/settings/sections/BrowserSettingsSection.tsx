@@ -247,16 +247,13 @@ export const BrowserSettingsSection: React.FC<BrowserSettingsSectionProps> = ({ 
 									margin: "0 0 6px 0px",
 								}}>
 								启用 Cline 使用您的 Chrome
-								{isBundled
-									? "（未在您的机器上检测到）"
-									: detectedChromePath
-										? ` (${detectedChromePath})`
-										: ""}
+								{isBundled ? "（未在您的机器上检测到）" : detectedChromePath ? ` (${detectedChromePath})` : ""}
 								。您可以在下方指定自定义路径。使用远程浏览器连接需要以调试模式启动 Chrome
 								{browserSettings.remoteBrowserEnabled ? (
 									<>
 										{" "}
-										手动启动（<code>--remote-debugging-port=9222</code>）或使用下方按钮。输入主机地址，或留空自动发现。
+										手动启动（<code>--remote-debugging-port=9222</code>
+										）或使用下方按钮。输入主机地址，或留空自动发现。
 									</>
 								) : (
 									"。"
@@ -310,7 +307,8 @@ export const BrowserSettingsSection: React.FC<BrowserSettingsSectionProps> = ({ 
 											fontSize: "12px",
 											color: "var(--vscode-descriptionForeground)",
 											margin: 0,
-										}}></p>
+										}}
+									/>
 								</div>
 							)}
 							{/* Chrome Executable Path section now follows remote-specific settings */}

@@ -168,7 +168,7 @@ function createAzureAdapter(settings: BlobStoreSettings): StorageAdapter | undef
 					"Content-Type": "text/plain",
 					"Content-Length": contentLength,
 				}
-				headers["Authorization"] = azureSharedKeyAuth(accessKeyId, secretAccessKey, "PUT", blobPath, headers)
+				headers.Authorization = azureSharedKeyAuth(accessKeyId, secretAccessKey, "PUT", blobPath, headers)
 
 				const response = await fetch(`${baseUrl}${blobPath}`, {
 					method: "PUT",

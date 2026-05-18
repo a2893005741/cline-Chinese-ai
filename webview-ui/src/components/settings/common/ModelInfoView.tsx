@@ -318,8 +318,7 @@ export const ModelInfoView = ({
 								{!providerSorting &&
 									"在提供商（AWS、Google Vertex 等）之间进行负载均衡，优先考虑价格并兼顾正常运行时间"}
 								{providerSorting === "price" && "按价格排序，优先选择成本最低的提供商"}
-								{providerSorting === "throughput" &&
-									"按吞吐量排序，优先选择最高吞吐量（可能增加成本）"}
+								{providerSorting === "throughput" && "按吞吐量排序，优先选择最高吞吐量（可能增加成本）"}
 								{providerSorting === "latency" && "按响应时间排序，优先选择最低延迟"}
 							</p>
 						</ProviderRoutingContainer>

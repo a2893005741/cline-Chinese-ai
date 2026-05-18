@@ -20,9 +20,7 @@ const DebugSection = ({ onResetState, renderSectionHeader }: DebugSectionProps) 
 				<Button onClick={() => onResetState(true)} variant="error">
 					重置全局状态
 				</Button>
-				<p className="text-xs mt-[5px] text-(--vscode-descriptionForeground)">
-					这将重置扩展中的所有全局状态和密钥存储。
-				</p>
+				<p className="text-xs mt-[5px] text-(--vscode-descriptionForeground)">这将重置扩展中的所有全局状态和密钥存储。</p>
 			</Section>
 			<Section>
 				<Button

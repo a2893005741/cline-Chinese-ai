@@ -30,12 +30,7 @@ const ConfirmationDialog = memo<{
 	<div className="text-sm my-2 flex items-center gap-0 justify-between">
 		<span className="font-semibold text-sm">压缩当前任务？</span>
 		<span className="flex gap-1">
-			<VSCodeButton
-				appearance="secondary"
-				className="text-sm"
-				onClick={onCancel}
-				title="否，保持任务不变"
-				type="button">
+			<VSCodeButton appearance="secondary" className="text-sm" onClick={onCancel} title="否，保持任务不变" type="button">
 				取消
 			</VSCodeButton>
 			<VSCodeButton

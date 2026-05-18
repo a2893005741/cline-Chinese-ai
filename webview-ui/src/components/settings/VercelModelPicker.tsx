@@ -150,7 +150,7 @@ const VercelModelPicker: React.FC<VercelModelPickerProps> = ({ isPopup, currentM
 		if (dropdownListRef.current) {
 			dropdownListRef.current.scrollTop = 0
 		}
-	}, [searchTerm])
+	}, [])
 
 	useEffect(() => {
 		if (selectedIndex >= 0 && itemRefs.current[selectedIndex]) {

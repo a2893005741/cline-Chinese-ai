@@ -573,7 +573,7 @@ export class TelemetryService {
 			properties: {
 				error:
 					errorMessage.length > MAX_ERROR_MESSAGE_LENGTH
-						? errorMessage.substring(0, MAX_ERROR_MESSAGE_LENGTH) + "..."
+						? `${errorMessage.substring(0, MAX_ERROR_MESSAGE_LENGTH)}...`
 						: errorMessage,
 				eventName,
 			},
@@ -878,19 +878,19 @@ export class TelemetryService {
 		}
 
 		if (Number.isFinite(options?.cacheWriteTokens)) {
-			const cacheWriteTokens = options!.cacheWriteTokens ?? 0
+			const cacheWriteTokens = options?.cacheWriteTokens ?? 0
 			this.recordCounter(TelemetryService.METRICS.CACHE.WRITE_TOTAL, cacheWriteTokens, attributes)
 			this.recordHistogram(TelemetryService.METRICS.CACHE.WRITE_PER_EVENT, cacheWriteTokens, attributes)
 		}
 
 		if (Number.isFinite(options?.cacheReadTokens)) {
-			const cacheReadTokens = options!.cacheReadTokens ?? 0
+			const cacheReadTokens = options?.cacheReadTokens ?? 0
 			this.recordCounter(TelemetryService.METRICS.CACHE.READ_TOTAL, cacheReadTokens, attributes)
 			this.recordHistogram(TelemetryService.METRICS.CACHE.READ_PER_EVENT, cacheReadTokens, attributes)
 		}
 
 		if (Number.isFinite(options?.totalCost)) {
-			const totalCost = options!.totalCost ?? 0
+			const totalCost = options?.totalCost ?? 0
 			const costAttributes = { ...attributes, currency: "USD" }
 			this.recordCounter(TelemetryService.METRICS.TASK.COST_TOTAL, totalCost, costAttributes)
 			this.recordHistogram(TelemetryService.METRICS.TASK.COST_PER_EVENT, totalCost, costAttributes)

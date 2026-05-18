@@ -6,12 +6,12 @@ describe("McpOAuthRedirectResolver", () => {
 	describe("extractLoopbackPort", () => {
 		it("should extract port from http://127.0.0.1:48801/path", () => {
 			const port = McpOAuthRedirectResolver.extractLoopbackPort("http://127.0.0.1:48801/mcp-auth/callback/abc123")
-			port!.should.equal(48801)
+			port?.should.equal(48801)
 		})
 
 		it("should extract port from http://127.0.0.1:48811 (no path)", () => {
 			const port = McpOAuthRedirectResolver.extractLoopbackPort("http://127.0.0.1:48811")
-			port!.should.equal(48811)
+			port?.should.equal(48811)
 		})
 
 		it("should return undefined for vscode:// URLs", () => {
@@ -193,7 +193,7 @@ describe("McpOAuthRedirectResolver", () => {
 
 			await McpOAuthRedirectResolver.resolve(savedUrl, "/mcp-auth/callback/abc123", getCallbackUrl)
 
-			receivedPreferredPort!.should.equal(48807)
+			receivedPreferredPort?.should.equal(48807)
 		})
 
 		it("should NOT pass preferred port for non-loopback saved URLs (vscode://)", async () => {

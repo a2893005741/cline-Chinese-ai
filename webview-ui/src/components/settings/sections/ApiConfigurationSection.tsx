@@ -81,7 +81,8 @@ const ApiConfigurationSection = ({ renderSectionHeader, initialModelTab }: ApiCo
 						为计划模式和执行模式使用不同的模型
 					</VSCodeCheckbox>
 					<p className="text-xs mt-[5px] text-(--vscode-descriptionForeground)">
-						在计划模式和执行模式之间切换时，将保留上一个模式使用的 API 和模型。例如，使用强推理模型制定计划，再用更经济的编码模型执行时，此功能非常有用。
+						在计划模式和执行模式之间切换时，将保留上一个模式使用的 API
+						和模型。例如，使用强推理模型制定计划，再用更经济的编码模型执行时，此功能非常有用。
 					</p>
 				</div>
 			</Section>

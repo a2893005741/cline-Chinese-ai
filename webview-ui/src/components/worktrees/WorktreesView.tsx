@@ -250,7 +250,8 @@ Please help me resolve these merge conflicts, then complete the merge, and delet
 			<div className="flex-1 overflow-y-auto p-5">
 				{/* Description */}
 				<p className="text-sm text-[var(--vscode-descriptionForeground)] m-0 mb-4">
-					Git 工作树让您可以同时在多个分支上工作，每个分支都在自己的文件夹中。在单独的窗口中打开工作树，以便 Cline 可以并行处理多个任务。{" "}
+					Git 工作树让您可以同时在多个分支上工作，每个分支都在自己的文件夹中。在单独的窗口中打开工作树，以便 Cline
+					可以并行处理多个任务。{" "}
 					<a
 						className="text-[var(--vscode-textLink-foreground)] hover:text-[var(--vscode-textLink-activeForeground)]"
 						href="https://docs.cline.bot/features/worktrees"
@@ -508,7 +509,7 @@ Please help me resolve these merge conflicts, then complete the merge, and delet
 			<DeleteWorktreeModal
 				branchName={deleteWorktree?.branch || ""}
 				onClose={() => setDeleteWorktree(null)}
-				onConfirm={(deleteBranch) => handleDeleteWorktree(deleteWorktree!.path, deleteBranch, deleteWorktree!.branch)}
+				onConfirm={(deleteBranch) => handleDeleteWorktree(deleteWorktree?.path, deleteBranch, deleteWorktree?.branch)}
 				open={!!deleteWorktree}
 				worktreePath={deleteWorktree?.path || ""}
 			/>

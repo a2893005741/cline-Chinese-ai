@@ -303,9 +303,7 @@ export function RemoteConfigSection({ renderSectionHeader }: RemoteConfigSection
 	return (
 		<BaseRemoteConfigSection renderSectionHeader={renderSectionHeader}>
 			<div className="flex flex-col gap-2">
-				<p className="text-description text-xs mb-2">
-					这些设置由您组织的远程配置管理。
-				</p>
+				<p className="text-description text-xs mb-2">这些设置由您组织的远程配置管理。</p>
 
 				<OtelSettingsSection />
 				<PromptUploadingSection />

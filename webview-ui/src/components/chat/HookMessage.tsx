@@ -147,7 +147,8 @@ const HookMessage = memo(({ message, CommandOutput }: HookMessageProps) => {
 					style={{
 						color: normalColor,
 						marginBottom: "-1.5px",
-					}}></span>
+					}}
+				/>
 				<span style={{ color: normalColor, fontWeight: "bold" }}>Hook:</span>
 				<span style={{ color: normalColor }}>{metadata.hookName}</span>
 				{metadata.toolName && (
@@ -199,15 +200,7 @@ const HookMessage = memo(({ message, CommandOutput }: HookMessageProps) => {
 								fontSize: "13px",
 								flexShrink: 0,
 							}}>
-							{isRunning
-								? "运行中"
-								: isFailed
-									? "失败"
-									: isCancelled
-										? "已中止"
-										: isCompleted
-											? "已完成"
-											: "未知"}
+							{isRunning ? "运行中" : isFailed ? "失败" : isCancelled ? "已中止" : isCompleted ? "已完成" : "未知"}
 						</span>
 						{metadata.exitCode !== undefined && metadata.exitCode !== 0 && (
 							<span

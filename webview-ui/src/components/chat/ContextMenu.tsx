@@ -75,7 +75,7 @@ const ContextMenu: React.FC<ContextMenuProps> = ({
 				loadingTimeoutRef.current = null
 			}
 		}
-	}, [isLoading, searchQuery])
+	}, [isLoading])
 
 	useEffect(() => {
 		if (menuRef.current) {
@@ -102,29 +102,32 @@ const ContextMenu: React.FC<ContextMenuProps> = ({
 	}
 
 	// Get accessible label for an option (used for screen readers and aria-label)
-	const getOptionLabel = useCallback((option: ContextMenuQueryItem): string => {
-		// Check simple labels first
-		const simpleLabel = SIMPLE_OPTION_LABELS[option.type]
-		if (simpleLabel) {
-			return simpleLabel
-		}
+	const getOptionLabel = useCallback(
+		(option: ContextMenuQueryItem): string => {
+			// Check simple labels first
+			const simpleLabel = SIMPLE_OPTION_LABELS[option.type]
+			if (simpleLabel) {
+				return simpleLabel
+			}
 
-		switch (option.type) {
-			case ContextMenuOptionType.Git:
-				if (option.value) {
-					return `${option.label}${option.description ? `, ${option.description}` : ""}`
-				}
-				return "Git 提交"
-			case ContextMenuOptionType.File:
-			case ContextMenuOptionType.Folder:
-				if (option.value) {
-					return option.label || option.value
-				}
-				return `添加${option.type === ContextMenuOptionType.File ? "文件" : "文件夹"}`
-			default:
-				return option.label || option.value || ""
-		}
-	}, [])
+			switch (option.type) {
+				case ContextMenuOptionType.Git:
+					if (option.value) {
+						return `${option.label}${option.description ? `, ${option.description}` : ""}`
+					}
+					return "Git 提交"
+				case ContextMenuOptionType.File:
+				case ContextMenuOptionType.Folder:
+					if (option.value) {
+						return option.label || option.value
+					}
+					return `添加${option.type === ContextMenuOptionType.File ? "文件" : "文件夹"}`
+				default:
+					return option.label || option.value || ""
+			}
+		},
+		[SIMPLE_OPTION_LABELS],
+	)
 
 	const renderOptionContent = (option: ContextMenuQueryItem) => {
 		// Handle simple label types
@@ -177,7 +180,7 @@ const ContextMenu: React.FC<ContextMenuProps> = ({
 									direction: displayText.includes(":") ? "ltr" : "rtl",
 									textAlign: "left",
 								}}>
-								{displayText.includes(":") ? displayText : cleanPathPrefix(displayText) + "\u200E"}
+								{displayText.includes(":") ? displayText : `${cleanPathPrefix(displayText)}\u200E`}
 							</span>
 						</>
 					)
@@ -229,7 +232,7 @@ const ContextMenu: React.FC<ContextMenuProps> = ({
 				onSelect(option.type, mentionValue)
 			}
 		},
-		[onSelect],
+		[onSelect, isOptionSelectable],
 	)
 
 	return (
@@ -264,7 +267,8 @@ const ContextMenu: React.FC<ContextMenuProps> = ({
 					flexDirection: "column",
 					maxHeight: "200px",
 					overflowY: "auto",
-				}}>
+				}}
+				tabIndex="0">
 				{/* Can't use virtuoso since it requires fixed height and menu height is dynamic based on # of items */}
 				{showDelayedLoading && filteredOptions.length === 0 && (
 					<div
