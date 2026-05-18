@@ -51,7 +51,7 @@ const DeleteWorktreeModal = ({ open, onClose, onConfirm, worktreePath, branchNam
 				{/* Title row with icon */}
 				<div className="flex items-center gap-2 mb-3 pr-6">
 					<AlertTriangle className="w-5 h-5 text-[var(--vscode-errorForeground)]" />
-					<h4 className="m-0">Delete Worktree</h4>
+					<h4 className="m-0">删除工作树</h4>
 				</div>
 
 				{/* Content */}
@@ -79,16 +79,16 @@ const DeleteWorktreeModal = ({ open, onClose, onConfirm, worktreePath, branchNam
 				{/* Buttons */}
 				<div className="flex justify-end gap-2">
 					<VSCodeButton appearance="secondary" disabled={isDeleting} onClick={onClose}>
-						Cancel
+						取消
 					</VSCodeButton>
 					<Button disabled={isDeleting} onClick={handleDelete} variant="danger">
 						{isDeleting ? (
 							<>
 								<Loader2 className="w-4 h-4 mr-1 animate-spin" />
-								Deleting...
+								删除中...
 							</>
 						) : (
-							"Delete"
+							"删除"
 						)}
 					</Button>
 				</div>

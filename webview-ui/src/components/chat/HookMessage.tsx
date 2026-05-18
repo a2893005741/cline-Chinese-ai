@@ -200,14 +200,14 @@ const HookMessage = memo(({ message, CommandOutput }: HookMessageProps) => {
 								flexShrink: 0,
 							}}>
 							{isRunning
-								? "Running"
+								? "运行中"
 								: isFailed
-									? "Failed"
+									? "失败"
 									: isCancelled
-										? "Aborted"
+										? "已中止"
 										: isCompleted
-											? "Completed"
-											: "Unknown"}
+											? "已完成"
+											: "未知"}
 						</span>
 						{metadata.exitCode !== undefined && metadata.exitCode !== 0 && (
 							<span
@@ -244,7 +244,7 @@ const HookMessage = memo(({ message, CommandOutput }: HookMessageProps) => {
 								cursor: "pointer",
 								fontFamily: "inherit",
 							}}>
-							Abort
+							中止
 						</button>
 					)}
 				</div>
@@ -258,7 +258,7 @@ const HookMessage = memo(({ message, CommandOutput }: HookMessageProps) => {
 							fontSize: "13px",
 							color: "var(--vscode-descriptionForeground)",
 						}}>
-						Took longer than 30 seconds. Check for infinite loops or add timeouts to network requests.
+						执行时间超过 30 秒。请检查是否存在无限循环或为网络请求添加超时设置。
 					</div>
 				)}
 
@@ -270,7 +270,7 @@ const HookMessage = memo(({ message, CommandOutput }: HookMessageProps) => {
 							fontSize: "13px",
 							color: "var(--vscode-descriptionForeground)",
 						}}>
-						Hook returned invalid JSON. See error details below for more information.
+						Hook 返回了无效的 JSON。请查看下方错误详情以获取更多信息。
 					</div>
 				)}
 

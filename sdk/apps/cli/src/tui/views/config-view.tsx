@@ -300,7 +300,7 @@ export function ConfigPanelContent(props: ConfigPanelProps) {
 		return () => {
 			cancelled = true;
 		};
-	}, [activeTab, pluginToolsError, pluginToolsLoaded, props.loadConfigData]);
+	}, [activeTab, pluginToolsError, pluginToolsLoaded, props]);
 
 	const rows = useMemo(() => {
 		const r: ConfigRow[] = [];

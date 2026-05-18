@@ -98,12 +98,12 @@ const CreateWorktreeModal = ({ open, onClose, openAfterCreate = false, onSuccess
 		return null
 	}
 
-	const title = openAfterCreate ? "New Worktree" : "Create New Worktree"
-	const buttonText = openAfterCreate ? "Create & Open" : "Create Worktree"
-	const creatingText = openAfterCreate ? "Creating & Opening..." : "Creating..."
+	const title = openAfterCreate ? "新建工作树" : "创建新工作树"
+	const buttonText = openAfterCreate ? "创建并打开" : "创建工作树"
+	const creatingText = openAfterCreate ? "创建并打开中..." : "创建中..."
 	const description = openAfterCreate
-		? "This will create a copy of your project on a new branch and open in a separate window."
-		: "This will create a copy of your project on a new branch."
+		? "这将在新分支上创建项目副本并在单独的窗口中打开。"
+		: "这将在新分支上创建项目副本。"
 
 	return (
 		<div

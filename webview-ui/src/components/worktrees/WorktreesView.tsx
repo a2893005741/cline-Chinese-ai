@@ -241,24 +241,23 @@ Please help me resolve these merge conflicts, then complete the merge, and delet
 			{/* Sticky Header with title and Done button */}
 			<div className="flex-none flex justify-between items-center px-5 py-3 border-b border-[var(--vscode-panel-border)]">
 				<h3 className="m-0" style={{ color: getEnvironmentColor(environment) }}>
-					Worktrees
+					工作树
 				</h3>
-				<VSCodeButton onClick={onDone}>Done</VSCodeButton>
+				<VSCodeButton onClick={onDone}>完成</VSCodeButton>
 			</div>
 
 			{/* Scrollable Content */}
 			<div className="flex-1 overflow-y-auto p-5">
 				{/* Description */}
 				<p className="text-sm text-[var(--vscode-descriptionForeground)] m-0 mb-4">
-					Git worktrees let you work on multiple branches at the same time, each in its own folder. Open worktrees in
-					their own windows so Cline can work on multiple tasks in parallel.{" "}
+					Git 工作树让您可以同时在多个分支上工作，每个分支都在自己的文件夹中。在单独的窗口中打开工作树，以便 Cline 可以并行处理多个任务。{" "}
 					<a
 						className="text-[var(--vscode-textLink-foreground)] hover:text-[var(--vscode-textLink-activeForeground)]"
 						href="https://docs.cline.bot/features/worktrees"
 						rel="noopener noreferrer"
 						style={{ fontSize: "inherit" }}
 						target="_blank">
-						Learn more
+						了解更多
 					</a>
 				</p>
 
@@ -328,7 +327,7 @@ Please help me resolve these merge conflicts, then complete the merge, and delet
 				{isLoading ? (
 					<div className="flex items-center justify-center min-h-32 py-8">
 						<Loader2 className="w-6 h-6 animate-spin text-[var(--vscode-descriptionForeground)]" />
-						<span className="ml-2 text-[var(--vscode-descriptionForeground)]">Loading...</span>
+						<span className="ml-2 text-[var(--vscode-descriptionForeground)]">加载中...</span>
 					</div>
 				) : isMultiRoot ? (
 					<div className="flex flex-col items-center justify-center min-h-32 py-8 text-center">
@@ -363,7 +362,7 @@ Please help me resolve these merge conflicts, then complete the merge, and delet
 						<AlertCircle className="w-8 h-8 text-[var(--vscode-errorForeground)] mb-2 shrink-0" />
 						<p className="text-[var(--vscode-errorForeground)]">{error}</p>
 						<VSCodeButton appearance="secondary" className="mt-3" onClick={loadWorktrees}>
-							Retry
+							重试
 						</VSCodeButton>
 					</div>
 				) : worktrees.length === 0 ? (
@@ -497,7 +496,7 @@ Please help me resolve these merge conflicts, then complete the merge, and delet
 					}}>
 					<VSCodeButton disabled={isLoading} onClick={() => setShowCreateForm(true)} style={{ width: "100%" }}>
 						<Plus className="w-4 h-4 mr-1" />
-						New Worktree
+						新建工作树
 					</VSCodeButton>
 				</div>
 			)}
@@ -613,7 +612,7 @@ Please help me resolve these merge conflicts, then complete the merge, and delet
 
 								<div className="flex justify-end gap-2">
 									<VSCodeButton appearance="secondary" disabled={isMerging} onClick={closeMergeModal}>
-										Cancel
+										取消
 									</VSCodeButton>
 									<VSCodeButton disabled={isMerging} onClick={handleMergeWorktree}>
 										{isMerging ? (

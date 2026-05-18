@@ -43,31 +43,31 @@ export const ErrorBlockTitle = ({
 
 	const title = (() => {
 		// Default loading state
-		const details = { title: "API Request...", classNames: ["font-bold"] }
+		const details = { title: "API 请求中...", classNames: ["font-bold"] }
 		// Handle cancellation states first
 		if (apiReqCancelReason === "user_cancelled") {
-			details.title = "API Request Cancelled"
+			details.title = "API 请求已取消"
 			details.classNames.push("text-(--vscode-foreground)")
 		} else if (apiReqCancelReason != null) {
-			details.title = "API Request Failed"
+			details.title = "API 请求失败"
 			details.classNames.push("text-(--vscode-errorForeground)")
 		} else if (cost != null) {
 			// Handle completed request
-			details.title = "API Request"
+			details.title = "API 请求"
 			details.classNames.push("text-(--vscode-foreground)")
 		} else if (apiRequestFailedMessage) {
 			// Handle failed request
 			const clineError = ClineError.parse(apiRequestFailedMessage)
 			const titleText = clineError?.isErrorType(ClineErrorType.Balance)
-				? "Credit Limit Reached"
+				? "已达信用额度上限"
 				: clineError?.isErrorType(ClineErrorType.SpendLimit)
-					? "Spend Limit Reached"
-					: "API Request Failed"
+					? "已达消费限额"
+					: "API 请求失败"
 			details.title = titleText
 			details.classNames.push("font-bold text-(--vscode-errorForeground)")
 		} else if (retryStatus) {
 			// Handle retry state
-			details.title = "API Request"
+			details.title = "API 请求"
 			details.classNames.push("text-(--vscode-foreground)")
 		}
 

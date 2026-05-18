@@ -35,43 +35,43 @@ interface FeatureToggle {
 const agentFeatures: FeatureToggle[] = [
 	{
 		id: "subagents",
-		label: "Subagents",
-		description: "Let Cline run focused subagents in parallel to explore the codebase for you.",
+		label: "子代理",
+		description: "让 Cline 并行运行专注的子代理，为您探索代码库。",
 		stateKey: "subagentsEnabled",
 		settingKey: "subagentsEnabled",
 	},
 	{
 		id: "native-tool-call",
-		label: "Native Tool Call",
-		description: "Use native function calling when available",
+		label: "原生工具调用",
+		description: "在可用时使用原生函数调用",
 		stateKey: "nativeToolCallSetting",
 		settingKey: "nativeToolCallEnabled",
 	},
 	{
 		id: "parallel-tool-calling",
-		label: "Parallel Tool Calling",
-		description: "Execute multiple tool calls simultaneously",
+		label: "并行工具调用",
+		description: "同时执行多个工具调用",
 		stateKey: "enableParallelToolCalling",
 		settingKey: "enableParallelToolCalling",
 	},
 	{
 		id: "strict-plan-mode",
-		label: "Strict Plan Mode",
-		description: "Prevents file edits while in Plan mode",
+		label: "严格计划模式",
+		description: "在计划模式下禁止文件编辑",
 		stateKey: "strictPlanModeEnabled",
 		settingKey: "strictPlanModeEnabled",
 	},
 	{
 		id: "auto-compact",
-		label: "Auto Compact",
-		description: "Automatically compress conversation history.",
+		label: "自动压缩",
+		description: "自动压缩对话历史记录。",
 		stateKey: "useAutoCondense",
 		settingKey: "useAutoCondense",
 	},
 	{
 		id: "focus-chain",
-		label: "Focus Chain",
-		description: "Maintain context focus across interactions",
+		label: "焦点链",
+		description: "在交互过程中保持上下文焦点",
 		stateKey: "focusChainEnabled",
 		settingKey: "focusChainSettings",
 		nestedKey: "enabled",
@@ -81,36 +81,36 @@ const agentFeatures: FeatureToggle[] = [
 const editorFeatures: FeatureToggle[] = [
 	{
 		id: "show-feature-tips",
-		label: "Feature Tips",
-		description: "Show rotating tips during the thinking phase to help you discover Cline features.",
+		label: "功能提示",
+		description: "在思考阶段显示轮播提示，帮助您发现 Cline 功能。",
 		stateKey: "showFeatureTips",
 		settingKey: "showFeatureTips",
 	},
 	{
 		id: "background-edit",
-		label: "Background Edit",
-		description: "Allow edits without stealing editor focus",
+		label: "后台编辑",
+		description: "允许在不抢占编辑器焦点的情况下进行编辑",
 		stateKey: "backgroundEditEnabled",
 		settingKey: "backgroundEditEnabled",
 	},
 	{
 		id: "checkpoints",
-		label: "Checkpoints",
-		description: "Save progress at key points for easy rollback",
+		label: "检查点",
+		description: "在关键节点保存进度，便于回滚",
 		stateKey: "enableCheckpointsSetting",
 		settingKey: "enableCheckpointsSetting",
 	},
 	{
 		id: "cline-web-tools",
-		label: "Cline Web Tools",
-		description: "Access web browsing and search capabilities",
+		label: "Cline 网络工具",
+		description: "访问网页浏览和搜索功能",
 		stateKey: "clineWebToolsEnabled",
 		settingKey: "clineWebToolsEnabled",
 	},
 	{
 		id: "worktrees",
-		label: "Worktrees",
-		description: "Enables git worktree management for running parallel Cline tasks.",
+		label: "工作树",
+		description: "启用 Git 工作树管理，用于并行运行 Cline 任务。",
 		stateKey: "worktreesEnabled",
 		settingKey: "worktreesEnabled",
 	},
@@ -119,24 +119,24 @@ const editorFeatures: FeatureToggle[] = [
 const experimentalFeatures: FeatureToggle[] = [
 	{
 		id: "yolo",
-		label: "Yolo Mode",
+		label: "Yolo 模式",
 		description:
-			"Execute tasks without user's confirmation. Auto-switches from Plan to Act mode and disables the ask question tool. Use with extreme caution.",
+			"无需用户确认即执行任务。自动从计划模式切换到执行模式，并禁用提问工具。请极度谨慎使用。",
 		stateKey: "yoloModeToggled",
 		settingKey: "yoloModeToggled",
 	},
 	{
 		id: "double-check-completion",
-		label: "Double-Check Completion",
+		label: "完成前双重检查",
 		description:
-			"Rejects the first completion attempt and asks the model to re-verify its work against the original task requirements before accepting.",
+			"拒绝第一次完成尝试，要求模型在接受前根据原始任务要求重新验证其工作。",
 		stateKey: "doubleCheckCompletionEnabled",
 		settingKey: "doubleCheckCompletionEnabled",
 	},
 	{
 		id: "lazy-teammate",
-		label: "Lazy Teammate Mode",
-		description: "Sometimes Cline just isn't feeling it today. For entertainment purposes only.",
+		label: "懒惰队友模式",
+		description: "有时候 Cline 今天就是不在状态。仅供娱乐。",
 		stateKey: "lazyTeammateModeEnabled",
 		settingKey: "lazyTeammateModeEnabled",
 	},
@@ -145,8 +145,8 @@ const experimentalFeatures: FeatureToggle[] = [
 const advancedFeatures: FeatureToggle[] = [
 	{
 		id: "hooks",
-		label: "Hooks",
-		description: "Enable lifecycle and tool hooks during task execution.",
+		label: "钩子",
+		description: "在任务执行期间启用生命周期和工具钩子。",
 		stateKey: "hooksEnabled",
 		settingKey: "hooksEnabled",
 	},
@@ -287,7 +287,7 @@ const FeatureSettingsSection = ({ renderSectionHeader }: FeatureSettingsSectionP
 				<div className="mb-5 flex flex-col gap-3">
 					{/* Core features */}
 					<div>
-						<div className="text-xs font-medium text-foreground/80 uppercase tracking-wider mb-3">Agent</div>
+						<div className="text-xs font-medium text-foreground/80 uppercase tracking-wider mb-3">代理</div>
 						<div
 							className="relative p-3 pt-0 my-3 rounded-md border border-editor-widget-border/50"
 							id="agent-features">
@@ -307,7 +307,7 @@ const FeatureSettingsSection = ({ renderSectionHeader }: FeatureSettingsSectionP
 									/>
 									{feature.id === "focus-chain" && featureState[feature.stateKey] && (
 										<SettingsSlider
-											label="Reminder Interval (1-10)"
+											label="提醒间隔 (1-10)"
 											max={10}
 											min={1}
 											onChange={handleFocusChainIntervalChange}
@@ -323,7 +323,7 @@ const FeatureSettingsSection = ({ renderSectionHeader }: FeatureSettingsSectionP
 
 					{/* Editor features */}
 					<div>
-						<div className="text-xs font-medium text-foreground/80 uppercase tracking-wider mb-3">Editor</div>
+						<div className="text-xs font-medium text-foreground/80 uppercase tracking-wider mb-3">编辑器</div>
 						<div
 							className="relative p-3 pt-0 my-3 rounded-md border border-editor-widget-border/50"
 							id="optional-features">
@@ -342,7 +342,7 @@ const FeatureSettingsSection = ({ renderSectionHeader }: FeatureSettingsSectionP
 
 					{/* Experimental features */}
 					<div>
-						<div className="text-xs font-medium uppercase tracking-wider mb-3 text-warning/80">Experimental</div>
+						<div className="text-xs font-medium uppercase tracking-wider mb-3 text-warning/80">实验性</div>
 						<div
 							className="relative p-3 pt-0 my-3 rounded-md border border-editor-widget-border/50 w-full"
 							id="experimental-features">
@@ -356,7 +356,7 @@ const FeatureSettingsSection = ({ renderSectionHeader }: FeatureSettingsSectionP
 									key={feature.id}
 									label={feature.label}
 									onChange={(checked) => handleFeatureChange(feature, checked)}
-									remoteTooltip="This setting is managed by your organization's remote configuration"
+									remoteTooltip="此设置由您组织的远程配置管理"
 								/>
 							))}
 						</div>
@@ -365,7 +365,7 @@ const FeatureSettingsSection = ({ renderSectionHeader }: FeatureSettingsSectionP
 
 				{/* Advanced */}
 				<div>
-					<div className="text-xs font-medium text-foreground/80 uppercase tracking-wider mb-3">Advanced</div>
+					<div className="text-xs font-medium text-foreground/80 uppercase tracking-wider mb-3">高级</div>
 					<div className="relative p-3 my-3 rounded-md border border-editor-widget-border/50" id="advanced-features">
 						<div className="space-y-3">
 							{advancedFeatures.map((feature) => (
@@ -381,15 +381,15 @@ const FeatureSettingsSection = ({ renderSectionHeader }: FeatureSettingsSectionP
 
 							{/* MCP Display Mode */}
 							<div className="space-y-2">
-								<Label className="text-sm font-medium text-foreground">MCP Display Mode</Label>
-								<p className="text-xs text-muted-foreground">Controls how MCP responses are displayed</p>
+								<Label className="text-sm font-medium text-foreground">MCP 显示模式</Label>
+									<p className="text-xs text-muted-foreground">控制 MCP 响应的显示方式</p>
 								<Select onValueChange={(v) => updateSetting("mcpDisplayMode", v)} value={mcpDisplayMode}>
 									<SelectTrigger className="w-full">
 										<SelectValue />
 									</SelectTrigger>
 									<SelectContent>
-										<SelectItem value="plain">Plain Text</SelectItem>
-										<SelectItem value="rich">Rich Display</SelectItem>
+										<SelectItem value="plain">纯文本</SelectItem>
+										<SelectItem value="rich">富文本</SelectItem>
 										<SelectItem value="markdown">Markdown</SelectItem>
 									</SelectContent>
 								</Select>

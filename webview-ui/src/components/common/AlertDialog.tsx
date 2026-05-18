@@ -79,10 +79,10 @@ export function UnsavedChangesDialog({
 	onConfirm,
 	onCancel,
 	onSave,
-	title = "Unsaved Changes",
-	description = "You have unsaved changes. Are you sure you want to discard them?",
-	confirmText = "Discard Changes",
-	saveText = "Save & Continue",
+	title = "未保存的更改",
+	description = "您有未保存的更改。确定要放弃这些更改吗？",
+	confirmText = "放弃更改",
+	saveText = "保存并继续",
 	showSaveOption = false,
 }: {
 	open: boolean
@@ -107,7 +107,7 @@ export function UnsavedChangesDialog({
 					<AlertDialogDescription>{description}</AlertDialogDescription>
 				</AlertDialogHeader>
 				<AlertDialogFooter>
-					<AlertDialogCancel onClick={onCancel}>Cancel</AlertDialogCancel>
+					<AlertDialogCancel onClick={onCancel}>取消</AlertDialogCancel>
 					{showSaveOption && onSave && <AlertDialogAction onClick={onSave}>{saveText}</AlertDialogAction>}
 					<AlertDialogAction appearance={showSaveOption ? "secondary" : "primary"} onClick={onConfirm}>
 						{confirmText}
