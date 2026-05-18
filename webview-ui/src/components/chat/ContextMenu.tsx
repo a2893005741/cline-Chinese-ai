@@ -268,7 +268,7 @@ const ContextMenu: React.FC<ContextMenuProps> = ({
 					maxHeight: "200px",
 					overflowY: "auto",
 				}}
-				tabIndex="0">
+				tabIndex={0}>
 				{/* Can't use virtuoso since it requires fixed height and menu height is dynamic based on # of items */}
 				{showDelayedLoading && filteredOptions.length === 0 && (
 					<div
